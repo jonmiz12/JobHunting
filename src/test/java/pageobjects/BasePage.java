@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.qameta.allure.Attachment;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -12,8 +13,10 @@ import java.math.BigDecimal;
 import java.time.Duration;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,14 +25,14 @@ public class BasePage {
 	JavascriptExecutor js; 
 	Actions actions;
 	WebDriverWait wait;
-	BigDecimal bigDecimal;
+	int time = 5;
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
 		js=(JavascriptExecutor)driver;
 		PageFactory.initElements(driver, this);
 		actions = new Actions(driver);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(time));
 	}
 
 	public void fillText (WebElement el, String text) {
@@ -48,7 +51,7 @@ public class BasePage {
 		} catch (Exception e) {
 		}
 	}
-	
+
 	public void waitFor(WebElement el) {
 		wait.until(ExpectedConditions.elementToBeClickable(el));
 	}
@@ -59,7 +62,7 @@ public class BasePage {
 
 	public boolean scrollIntoView(WebElement el) {
 		try {
-			js.executeScript("arguments[0].scrollIntoView(true);", el);
+			js.executeScript("arguments[0].scrollIntoView({block: \"center\"});", el);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -75,14 +78,29 @@ public class BasePage {
 		}
 	}
 
+	public void waitForELementToDisappear (WebElement el) {
+		int counter = 0;
+		while (el!=null && counter<15){
+			sleep(200);
+			counter++;
+		}
+	}
+
 	public void waitForScrollTo(List<WebElement> els) {
 		waitFor(els);
 		scrollIntoView(els);
 	}
 
-	public void waitForScrollTo(WebElement el) {
-		waitFor(el);
-		scrollIntoView(el);
+	public boolean waitForElementAttribute(WebElement el, String attribute, String value) {
+		int counter = time*5;
+		while (counter!=0) {
+			if (el.getAttribute(attribute).contains(value)) {
+				return true;
+			}
+			sleep(200);
+			counter--;
+		}
+		return false;
 	}
 	
 	public void click(WebElement el) {
@@ -96,6 +114,21 @@ public class BasePage {
 	
 	public void assertEquals (Boolean actual, Boolean expected) {
 		Assert.assertEquals(actual, expected);
+	}
+
+	public void isXwindows(WebDriver driver, String originalWindow) {
+		if (driver.getWindowHandles().size()>1) {
+			int size = driver.getWindowHandles().size();
+			Set<String> windowHandles = driver.getWindowHandles();
+			for (String handle : windowHandles) {
+				driver.switchTo().window(handle);
+				if (!handle.equals(originalWindow)) {
+					driver.close();
+				}
+			}
+			driver.switchTo().window(originalWindow);
+		}
+		sleep(2000);
 	}
 	
 	public void assertEquals (int actual, int expected) {
@@ -114,27 +147,22 @@ public class BasePage {
 		driver.navigate().refresh();
 	}
 
-	public String returnTextAfterRegex(String text, String pattern) {
-		Pattern regex = Pattern.compile(pattern);
-		Matcher matcher = regex.matcher(text);
-
-		if (matcher.find()) {
-			String extractedText = matcher.group(1);
-			return extractedText;
-		}
-		return null;
-	}
-
-	public HashMap<String, WebElement> convertListToDictionary (List<WebElement> webElements) {
-		HashMap<String, WebElement> dictionary = new HashMap<>();
-		for (WebElement element : webElements) {
-			dictionary.put(element.getText(), element);
-		}
-		return dictionary;
-	}
-
 	public byte[] takeScreenshotAsByteArray() {
 		return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+	}
+
+	public void takeScreeshot() {
+		byte[] screenshot1 = takeScreenshotAsByteArray();
+		attachScreenshot("Step 1 Screenshot", screenshot1);
+	}
+
+	public void backButton() {
+		driver.navigate().back();
+	}
+
+	@Attachment(value = "{name}" + "", type = "image/png")
+	public byte[] attachScreenshot(String name, byte[] screenshot) {
+		return screenshot;
 	}
 
 }

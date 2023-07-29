@@ -3,10 +3,10 @@ package pageobjects.drushim;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pageobjects.BasePage;
+
 import java.util.List;
 
-public class HomePage extends BasePage {
+public class HomePage extends Header {
 
     @FindBy (css = ".login-text")
     WebElement userName;
@@ -18,8 +18,6 @@ public class HomePage extends BasePage {
     WebElement loginWindowBtn;
     @FindBy (css = "#submit-login-btn")
     WebElement loginBtn;
-    @FindBy (css = "#mobile-smart-btn")
-    WebElement smartAgentBtn;
     @FindBy (css = ".agents-table-list>div:not(:first-child):not(:last-child)")
     List<WebElement> agentsList;
 
@@ -40,15 +38,14 @@ public class HomePage extends BasePage {
             click(loginBtn);
             sleep(3000);
         }
-        while (getUserName().equals("התחברות")){
+        int counter = 10;
+        while (getUserName().equals("התחברות") && counter!=0){
             sleep(200);
+            counter--;
         }
-        return getUserName().equals(userName);
+        String u = getUserName();
+        return u.equals(userName);
 
-    }
-
-    public void clickSmartAgent () {
-        click(smartAgentBtn);
     }
 
     public boolean clickAgentByContent (String agentName) {

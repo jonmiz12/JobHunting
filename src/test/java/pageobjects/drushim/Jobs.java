@@ -1,16 +1,15 @@
 package pageobjects.drushim;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pageobjects.BasePage;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class Jobs extends BasePage {
+public class Jobs extends Header {
     @FindBy (css = ".inner-wrap.px-2 [role=\"list\"]")
     List<WebElement> jobElements;
     @FindBy (css = ".job-url.primary--text.font-weight-medium.primary--text")
@@ -42,48 +41,86 @@ public class Jobs extends BasePage {
     WebElement loadMoreJobs;
     @FindBy (css = ".text--large")
     WebElement jobXBth;
+    @FindBy (css = ".agent-btn")
+    List<WebElement> agents;
+    @FindBy (css = ".col .mdi-chevron-right.theme--light")
+    List<WebElement> agentsSlideBtns;
+    @FindBy (css = ".loading-page")
+    WebElement loadingPageOverlay;
+
 
     public Jobs(WebDriver driver) {
         super(driver);
     }
-
-    public boolean findJobAndSendCVByContent(String[] jobsKeys) {
-        Boolean expanded = false;
-        String jobTitleString;
-        int loadMore = 0;
-        for (int i = 0; i<jobsTitlesElements.size(); i++) {
-            if (jobsTitlesElements.get(i).isDisplayed()) {
-                jobTitleString = jobsTitlesElements.get(i).getText();
-                scrollIntoView(jobsTitlesElements);
-                for (int k = 0; k<jobsKeys.length; k++) {
-                    if (isSendEnabledTitleMatchAndSentDisplayed(jobsTitlesElements.get(i), jobsSendCVBtn.get(i), jobsKeys[k])) {
-                        click(jobsExpandBtn.get(i));
-                        expanded = true;
-                        waitFor(jobDesc);
-                    }
-                }
-                if (expanded) {
-                    for (int j = 0; j < jobsKeys.length; j++) {
-                        if (jobDesc.getText().contains(jobsKeys[j])) {
-                            click(jobsSendCVBtn.get(i));
-                            waitFor(jobTitle);
-                            sendCV(String.valueOf(i));
+    
+    public void selectAgent(String agentName) {
+        for (int p = 0; p < agents.size(); p++) {
+            if (StringUtils.containsIgnoreCase(agents.get(p).getText(), agentName)) {
+                if (agents.get(p).isDisplayed()) {
+                    click(agents.get(p));
+                    break;
+                } else {
+                    for (WebElement btn : agentsSlideBtns) {
+                        if (btn.isEnabled()) {
+                            click(btn);
+                            click(agents.get(p));
+                            waitForELementToDisappear(loadingPageOverlay);
+                            break;
                         }
                     }
-                    click(jobReduce);
-                    expanded = false;
                 }
-            }else {
-                if (!scrollIntoView(loadMoreJobs)) {
-                    System.out.println(loadMore);
+            }
+        }
+    }
+
+    public boolean findJobAndSendCVByContent(String[] jobsKeys, String [] agentNames) {
+        for (int g = 0; g<agentNames.length; g++) {
+            if (g==0){continue;}
+            selectAgent(agentNames[g]);
+            for (int i = 0; i < jobsTitlesElements.size(); i++) {
+                if (isJobValid(jobsKeys, i)) {
+                    click(jobsSendCVBtn.get(i));
+                    waitFor(jobTitle);
+                    sendCV(String.valueOf(i));
+                    click(jobReduce);
                     return true;
                 }
-                loadMore++;
-                click(loadMoreJobs);
-                sleep(1500);
             }
         }
         return false;
+    }
+    
+    public boolean isJobValid(String[] jobsKeys, int i) {
+        if (jobsTitlesElements.get(i).isDisplayed()) {
+            scrollIntoView(jobsTitlesElements.get(i));
+            if (!isSendEnabledAndSentDisplayed(jobsTitlesElements.get(i), jobsSendCVBtn.get(i))) {
+                return false;
+            }
+            return isTitleMatchSoExpand(jobsKeys, i);
+        } else {
+            try {
+                click(loadMoreJobs);
+            } catch (Exception e) {
+                return true;
+            }
+            sleep(1500);
+            return isJobValid(jobsKeys, i);
+        }
+    }
+
+    private Boolean isTitleMatchSoExpand(String[] jobsKeys, int i) {
+        for (String jobkey:jobsKeys) {
+            if (matchTexts(jobsTitlesElements.get(i), jobkey)) {
+                click(jobsExpandBtn.get(i));
+                waitFor(jobDesc);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean matchTexts(WebElement el, String jobKey) {
+        return StringUtils.containsIgnoreCase(el.getText(), jobKey);
     }
 
     public boolean sendCV(String jobNum) {
@@ -91,9 +128,9 @@ public class Jobs extends BasePage {
             return false;
         }
         click(jobSendCVBtn);
-        sleep(3000);
+        waitFor(appliedJobXBtn);
         click(appliedJobXBtn);
-        takeScreeshot(jobNum);
+        takeScreeshot();
         return true;
     }
 
@@ -131,19 +168,8 @@ public class Jobs extends BasePage {
         return el.isEnabled();
     }
 
-    public boolean isSendEnabledTitleMatchAndSentDisplayed(WebElement el, WebElement sendCVBtn, String jobKey) {
-        return el.getText().contains(jobKey) &&
-                !isSentCVDisplayed(el) &&
+    public boolean isSendEnabledAndSentDisplayed(WebElement el, WebElement sendCVBtn) {
+        return !isSentCVDisplayed(el) &&
                 isEnabled(sendCVBtn);
-    }
-
-    public void takeScreeshot(String jobTitle) {
-        byte[] screenshot1 = takeScreenshotAsByteArray();
-        attachScreenshot("Step 1 Screenshot", screenshot1);
-    }
-
-    @Attachment(value = "{name}", type = "image/png")
-    public byte[] attachScreenshot(String name, byte[] screenshot) {
-        return screenshot;
     }
 }

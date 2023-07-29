@@ -2,12 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Suite1">
-    <listeners>
-        <listener class-name="utils.ListenerClass"></listener>
-    </listeners>
     <test name = "test1">
-        <packages>
-            <package name = "tests"/>
-        </packages>
+        <classes>
+            <class name="tests.sqlink.Sqlink"></class>
+            <class name="tests.jobnet.Jobnet"></class>
+            <class name="tests.jobmaster.Jobmaster"></class>
+            <class name="tests.drushim.Drushim"></class>
+        </classes>
     </test>
 </suite>
