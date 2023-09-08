@@ -8,6 +8,7 @@
             <class name="tests.jobnet.Jobnet"></class>
             <class name="tests.jobmaster.Jobmaster"></class>
             <class name="tests.drushim.Drushim"></class>
+            <class name="tests.alljobs.AllJobs"></class>
         </classes>
     </test>
 </suite>

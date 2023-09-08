@@ -1,10 +1,8 @@
 package pageobjects.Jobmaster;
 
-import com.github.dockerjava.api.command.PullImageCmd;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pageobjects.BasePage;
 
 public class HomePage extends Header {
 

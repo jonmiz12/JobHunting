@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pageobjects.BasePage;
 
-import java.sql.Driver;
-
 public class LoginPage extends BasePage {
     @FindBy (css = "#email")
     WebElement fieldEmail;

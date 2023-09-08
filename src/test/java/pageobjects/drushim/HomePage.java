@@ -38,7 +38,7 @@ public class HomePage extends Header {
             click(loginBtn);
             sleep(3000);
         }
-        int counter = 10;
+        int counter = 20;
         while (getUserName().equals("התחברות") && counter!=0){
             sleep(200);
             counter--;

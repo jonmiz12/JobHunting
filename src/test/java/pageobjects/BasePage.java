@@ -7,18 +7,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utils.ListenerClass;
-
-import java.math.BigDecimal;
 import java.time.Duration;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class BasePage {
 	WebDriver driver;
@@ -39,6 +33,10 @@ public class BasePage {
 		highlightElement(el, "lightblue");
 		el.clear();
 		el.sendKeys(text);
+	}
+
+	public void switchToFrame (WebElement frameEl) {
+		driver.switchTo().frame(frameEl);
 	}
 	
 	public void movetTo (WebElement el) {
