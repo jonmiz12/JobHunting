@@ -9,10 +9,11 @@ public class Drushim extends DrushimBaseTest {
     @Test
     public void tc01_runDrushim(){
         HomePage hp = new HomePage(driver);
-        hp.assertEquals(hp.login(email, password, userName), true);
-        hp.clickSmartAgent();
-        hp.assertEquals(hp.clickAgentByContent(agentNames[0]), true);
+        hp.closeHstgOverlay();
+        hp.assertEquals(hp.login(email, password, userName), userName);
+        hp.clickMenuItemByName("מותאמות עבורי");
+//        hp.assertEquals(hp.clickAgentByContent(agentNames[0]), true);
         Jobs j = new Jobs(driver);
-        j.assertEquals(j.findJobAndSendCVByContent(jobskeys, agentNames), true);
+        j.assertEquals(j.findJobAndSendCVByContent(jobskeys, agentNames, CV), true);
     }
 }

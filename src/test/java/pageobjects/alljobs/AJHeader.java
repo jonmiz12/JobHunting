@@ -26,15 +26,18 @@ public class AJHeader extends BasePage {
         return true;
     }
 
-    public void clickAgents (){
-        waitFor(userDropdown);
-        movetTo(userDropdown);
-        waitFor(agentsBtn);
-        click(agentsBtn);
+    public void clickAgents (String agentsUrl){
+        sleep(5000);
+
+//        waitFor(userDropdown);
+//        movetTo(userDropdown);
+//        waitFor(agentsBtn);
+//        click(agentsBtn);
     }
 
-    public boolean isUserNameMatch(String userName) {
-        String actualUserName = this.userName.getText();
-        return actualUserName.equals(userName);
+    public boolean isUserNameMatch(String expectedUserName) {
+        waitFor(userName);
+        String actualUserName = userName.getText();
+        return actualUserName.equals(expectedUserName);
     }
 }

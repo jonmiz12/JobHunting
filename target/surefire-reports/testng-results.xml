@@ -1,41 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="5" passed="4">
+<testng-results ignored="0" total="5" passed="3" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite1" duration-ms="592369" started-at="2023-09-08T12:20:20 IDT" finished-at="2023-09-08T12:30:12 IDT">
+  <suite started-at="2024-07-19T15:37:50 IDT" name="Suite1" finished-at="2024-07-19T15:55:33 IDT" duration-ms="1063142">
     <groups>
     </groups>
-    <test name="test1" duration-ms="592369" started-at="2023-09-08T12:20:20 IDT" finished-at="2023-09-08T12:30:12 IDT">
-      <class name="tests.drushim.Drushim">
-        <test-method status="PASS" signature="setup(org.testng.ITestContext)[pri:0, instance:tests.drushim.Drushim@50305a]" name="setup" is-config="true" duration-ms="7162" started-at="2023-09-08T12:29:19 IDT" finished-at="2023-09-08T12:29:27 IDT">
+    <test started-at="2024-07-19T15:37:50 IDT" name="test1" finished-at="2024-07-19T15:55:33 IDT" duration-ms="1063142">
+      <class name="tests.sqlink.Sqlink">
+        <test-method is-config="true" signature="setup(org.testng.ITestContext)[pri:0, instance:tests.sqlink.Sqlink@258ee7de]" started-at="2024-07-19T15:37:50 IDT" name="setup" finished-at="2024-07-19T15:37:58 IDT" duration-ms="7241" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@32795578]]>
+                <![CDATA[org.testng.TestRunner@1785b293]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="FAIL" signature="tc01_runDrushim()[pri:0, instance:tests.drushim.Drushim@50305a]" name="tc01_runDrushim" duration-ms="8336" started-at="2023-09-08T12:29:27 IDT" finished-at="2023-09-08T12:29:35 IDT">
+        <test-method signature="tc01_runSqlink()[pri:0, instance:tests.sqlink.Sqlink@258ee7de]" started-at="2024-07-19T15:37:58 IDT" name="tc01_runSqlink" finished-at="2024-07-19T15:42:52 IDT" duration-ms="294394" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc01_runSqlink -->
+      </class> <!-- tests.sqlink.Sqlink -->
+      <class name="tests.drushim.Drushim">
+        <test-method is-config="true" signature="setup(org.testng.ITestContext)[pri:0, instance:tests.drushim.Drushim@42fcc7e6]" started-at="2024-07-19T15:54:38 IDT" name="setup" finished-at="2024-07-19T15:54:44 IDT" duration-ms="5739" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@1785b293]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="tc01_runDrushim()[pri:0, instance:tests.drushim.Drushim@42fcc7e6]" started-at="2024-07-19T15:54:44 IDT" name="tc01_runDrushim" finished-at="2024-07-19T15:54:55 IDT" duration-ms="10529" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[expected [true] but found [false]]]>
+              <![CDATA[expected [יהונתן] but found [התחברות]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+              <![CDATA[java.lang.AssertionError: expected [יהונתן] but found [התחברות]
 at org.testng.Assert.fail(Assert.java:110)
 at org.testng.Assert.failNotEquals(Assert.java:1413)
 at org.testng.Assert.assertEqualsImpl(Assert.java:149)
 at org.testng.Assert.assertEquals(Assert.java:131)
-at org.testng.Assert.assertEquals(Assert.java:643)
-at pageobjects.BasePage.assertEquals(BasePage.java:114)
-at tests.drushim.Drushim.tc01_runDrushim(Drushim.java:12)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.Assert.assertEquals(Assert.java:655)
+at org.testng.Assert.assertEquals(Assert.java:665)
+at pageobjects.BasePage.assertEquals(BasePage.java:158)
+at tests.drushim.Drushim.tc01_runDrushim(Drushim.java:13)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
 at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:673)
 at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:220)
@@ -44,7 +62,7 @@ at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInv
 at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:193)
 at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
 at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.util.ArrayList.forEach(ArrayList.java:1257)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
 at org.testng.TestRunner.privateRun(TestRunner.java:808)
 at org.testng.TestRunner.run(TestRunner.java:603)
 at org.testng.SuiteRunner.runTest(SuiteRunner.java:429)
@@ -71,70 +89,128 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
           </reporter-output>
         </test-method> <!-- tc01_runDrushim -->
       </class> <!-- tests.drushim.Drushim -->
-      <class name="tests.sqlink.Sqlink">
-        <test-method status="PASS" signature="setup(org.testng.ITestContext)[pri:0, instance:tests.sqlink.Sqlink@4b4dd216]" name="setup" is-config="true" duration-ms="7852" started-at="2023-09-08T12:20:20 IDT" finished-at="2023-09-08T12:20:28 IDT">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[org.testng.TestRunner@32795578]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method status="PASS" signature="tc01_runSqlink()[pri:0, instance:tests.sqlink.Sqlink@4b4dd216]" name="tc01_runSqlink" duration-ms="177991" started-at="2023-09-08T12:20:28 IDT" finished-at="2023-09-08T12:23:26 IDT">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tc01_runSqlink -->
-      </class> <!-- tests.sqlink.Sqlink -->
       <class name="tests.alljobs.AllJobs">
-        <test-method status="PASS" signature="setup(org.testng.ITestContext)[pri:0, instance:tests.alljobs.AllJobs@72efb5c1]" name="setup" is-config="true" duration-ms="7093" started-at="2023-09-08T12:29:35 IDT" finished-at="2023-09-08T12:29:42 IDT">
+        <test-method is-config="true" signature="setup(org.testng.ITestContext)[pri:0, instance:tests.alljobs.AllJobs@9255c05]" started-at="2024-07-19T15:54:55 IDT" name="setup" finished-at="2024-07-19T15:55:02 IDT" duration-ms="7185" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@32795578]]>
+                <![CDATA[org.testng.TestRunner@1785b293]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="tc01_runAllJobs()[pri:0, instance:tests.alljobs.AllJobs@72efb5c1]" name="tc01_runAllJobs" duration-ms="30013" started-at="2023-09-08T12:29:42 IDT" finished-at="2023-09-08T12:30:12 IDT">
+        <test-method signature="tc01_runAllJobs()[pri:0, instance:tests.alljobs.AllJobs@9255c05]" started-at="2024-07-19T15:55:02 IDT" name="tc01_runAllJobs" finished-at="2024-07-19T15:55:33 IDT" duration-ms="31708" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tc01_runAllJobs -->
       </class> <!-- tests.alljobs.AllJobs -->
       <class name="tests.jobmaster.Jobmaster">
-        <test-method status="PASS" signature="setup(org.testng.ITestContext)[pri:0, instance:tests.jobmaster.Jobmaster@2970a5bc]" name="setup" is-config="true" duration-ms="2491" started-at="2023-09-08T12:25:59 IDT" finished-at="2023-09-08T12:26:02 IDT">
+        <test-method is-config="true" signature="setup(org.testng.ITestContext)[pri:0, instance:tests.jobmaster.Jobmaster@4a0df195]" started-at="2024-07-19T15:50:55 IDT" name="setup" finished-at="2024-07-19T15:50:58 IDT" duration-ms="3201" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@32795578]]>
+                <![CDATA[org.testng.TestRunner@1785b293]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="tc01_RunJobMaster()[pri:0, instance:tests.jobmaster.Jobmaster@2970a5bc]" name="tc01_RunJobMaster" duration-ms="197672" started-at="2023-09-08T12:26:02 IDT" finished-at="2023-09-08T12:29:19 IDT">
+        <test-method signature="tc01_RunJobMaster()[pri:0, instance:tests.jobmaster.Jobmaster@4a0df195]" started-at="2024-07-19T15:50:58 IDT" name="tc01_RunJobMaster" finished-at="2024-07-19T15:54:38 IDT" duration-ms="220472" status="FAIL">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+            <message>
+              <![CDATA[element click intercepted: Element <span tabindex="0" class="bottomItems twoBTNS bottomItemsSend Begin_Cv_Send" data-selector="Begin_Cv_Send_9098961" forlogin="{'isLogin':'false','selector':'data-selector','events':'scrollIntoView(),click()'}" onclick="sendEventApply('9098961');applyJob(9098961,null);" style="">...</span> is not clickable at point (1028, 515). Other element would receive the click: <div id="modal_shadow" style=""></div>
+  (Session info: chrome=126.0.6478.127)
+Build info: version: '4.18.1', revision: 'b1d3319b48'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [1be369d2cf4c8b4692781aff58e5d400, clickElement {id=f.AD5F8182FB6CAB4E39C2734117B330F9.d.E27F9C68C837293059EA39C7A80537C0.e.1520}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6478.127, chrome: {chromedriverVersion: 126.0.6478.182 (5b5d8292ddf..., userDataDir: C:\Users\jonmi\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:55107}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:55107/devtoo..., se:cdpVersion: 126.0.6478.127, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (1be369d2cf4c8b4692781aff58e5d400)] -> css selector: [id^="misra"] .bottomItemsSend]
+Session ID: 1be369d2cf4c8b4692781aff58e5d400]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <span tabindex="0" class="bottomItems twoBTNS bottomItemsSend Begin_Cv_Send" data-selector="Begin_Cv_Send_9098961" forlogin="{'isLogin':'false','selector':'data-selector','events':'scrollIntoView(),click()'}" onclick="sendEventApply('9098961');applyJob(9098961,null);" style="">...</span> is not clickable at point (1028, 515). Other element would receive the click: <div id="modal_shadow" style=""></div>
+  (Session info: chrome=126.0.6478.127)
+Build info: version: '4.18.1', revision: 'b1d3319b48'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [1be369d2cf4c8b4692781aff58e5d400, clickElement {id=f.AD5F8182FB6CAB4E39C2734117B330F9.d.E27F9C68C837293059EA39C7A80537C0.e.1520}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6478.127, chrome: {chromedriverVersion: 126.0.6478.182 (5b5d8292ddf..., userDataDir: C:\Users\jonmi\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:55107}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:55107/devtoo..., se:cdpVersion: 126.0.6478.127, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (1be369d2cf4c8b4692781aff58e5d400)] -> css selector: [id^="misra"] .bottomItemsSend]
+Session ID: 1be369d2cf4c8b4692781aff58e5d400
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:519)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+at pageobjects.BasePage.click(BasePage.java:154)
+at pageobjects.Jobmaster.FeedPage.sendCVByKeys(FeedPage.java:42)
+at pageobjects.Jobmaster.FeedPage.sendCVByKeys(FeedPage.java:60)
+at pageobjects.Jobmaster.FeedPage.searchByArrayAndCallSendCV(FeedPage.java:75)
+at tests.jobmaster.Jobmaster.tc01_RunJobMaster(Jobmaster.java:18)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:673)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:220)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:945)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:193)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+at org.testng.TestRunner.privateRun(TestRunner.java:808)
+at org.testng.TestRunner.run(TestRunner.java:603)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:429)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:423)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:383)
+at org.testng.SuiteRunner.run(SuiteRunner.java:326)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1249)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+at org.testng.TestNG.runSuites(TestNG.java:1092)
+at org.testng.TestNG.run(TestNG.java:1060)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:324)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:74)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:123)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:456)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:169)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tc01_RunJobMaster -->
       </class> <!-- tests.jobmaster.Jobmaster -->
       <class name="tests.jobnet.Jobnet">
-        <test-method status="PASS" signature="setup(org.testng.ITestContext)[pri:0, instance:tests.jobnet.Jobnet@672f11c2]" name="setup" is-config="true" duration-ms="2246" started-at="2023-09-08T12:23:26 IDT" finished-at="2023-09-08T12:23:28 IDT">
+        <test-method is-config="true" signature="setup(org.testng.ITestContext)[pri:0, instance:tests.jobnet.Jobnet@3fae596]" started-at="2024-07-19T15:42:52 IDT" name="setup" finished-at="2024-07-19T15:44:39 IDT" duration-ms="107215" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@32795578]]>
+                <![CDATA[org.testng.TestRunner@1785b293]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="tc01_RunJobnet()[pri:0, instance:tests.jobnet.Jobnet@672f11c2]" name="tc01_RunJobnet" duration-ms="151286" started-at="2023-09-08T12:23:28 IDT" finished-at="2023-09-08T12:25:59 IDT">
+        <test-method signature="tc01_RunJobnet()[pri:0, instance:tests.jobnet.Jobnet@3fae596]" started-at="2024-07-19T15:44:39 IDT" name="tc01_RunJobnet" finished-at="2024-07-19T15:50:55 IDT" duration-ms="375212" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tc01_RunJobnet -->

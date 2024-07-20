@@ -19,6 +19,7 @@ public class DrushimBaseTest {
     String password = Utils.readProperty("password", site);
     String agentNames [] = Utils.readProperty("agentsnames", site).split(",");
     String[] jobskeys = Utils.readProperty("jobskeys", site).split(",");
+    String CV = Utils.readProperty(("CV"), site);
 
     WebDriver driver;
 

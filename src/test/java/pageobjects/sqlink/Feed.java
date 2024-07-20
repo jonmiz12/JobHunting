@@ -26,14 +26,14 @@ public class Feed extends BasePage {
         super(driver);
     }
 
-    public boolean sendCVByKeys (String jobKeys[]) {
+    public boolean sendCVByKeys (String jobKeys[], String CVName) {
         waitFor(jobs);
         for (int i = 0; i<jobs.size(); i++) {
             scrollIntoView(jobsTitles.get(i));
             for (int j =0; j<jobKeys.length; j++) {
                 if (jobsTitles.get(i).getText().contains(jobKeys[j])) {
                     click(sendCVBtns.get(i));
-                    uploadCV();
+                    uploadCV(CVName);
                     break;
                 }
             }
@@ -41,14 +41,14 @@ public class Feed extends BasePage {
         if (leftArrow.isDisplayed()) {
             scrollIntoView(leftArrow);
             click(leftArrow);
-            return sendCVByKeys(jobKeys);
+            return sendCVByKeys(jobKeys, CVName);
         } else {
             return true;
         }
     }
 
-    public boolean uploadCV() {
-        uploadCVBtn.sendKeys("C:\\Users\\jonmi\\Desktop\\קבצי קוח\\(A) CV - Jonathan Mizrahi.docx");
+    public boolean uploadCV(String CVName) {
+        uploadCVBtn.sendKeys("C:\\Users\\jonmi\\Desktop\\קבצי קוח\\" + CVName );
         click(sendCVBtn);
         backButton();
         waitFor(hamburgerMenuBtn);

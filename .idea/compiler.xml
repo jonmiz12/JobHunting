@@ -9,5 +9,8 @@
         <module name="JobHunting" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AdvancedSelenium" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

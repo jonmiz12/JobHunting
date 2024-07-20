@@ -25,6 +25,7 @@ tests\alljobs\AllJobsBaseTest.class
 tests\jobnet\Jobnet.class
 pageobjects\alljobs\AJLoginPage.class
 pageobjects\drushim\Header.class
+test.class
 pageobjects\jobnet\Header.class
 tests\drushim\Drushim.class
 tests\sqlink\Sqlink.class

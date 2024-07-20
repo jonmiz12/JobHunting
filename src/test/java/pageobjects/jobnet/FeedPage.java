@@ -5,8 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.OptionalInt;
 
 public class FeedPage extends Header{
 
@@ -30,32 +32,45 @@ public class FeedPage extends Header{
     List<WebElement> searchTree;
     @FindBy (css = ".btnPaging:last-child")
     WebElement lastPagingBtn;
-    @FindBy (css = "#ucSendCV_divQuestions")
-    WebElement questions;
     @FindBy (css = "#cvupload .close-popup")
     WebElement uploadOverlayXBtn;
     @FindBy (css = "#frmSendCv")
     WebElement sendCVFrame;
+    @FindBy (css = "[id^=\"ucSendCV_dlQuestions_divRBQ_\"]")
+    List<WebElement> questions;
+    @FindBy (css = "#cvupload .close-popup")
+    WebElement applyOverlayXBtn;
+    @FindBy (css = "#ucSendCV_ddlFiles>option")
+    List<WebElement> CVs;
+    @FindBy (css = "#deleteCookie")
+    WebElement exposeSelectCV;
+    @FindBy (css = ".modal-content .bootstrap-dialog-body")
+    WebElement sendError;
+
     public FeedPage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean findJobAndSendCVByContent (String[] jobsKeys, String previewLetter, String[] distributions, WebDriver driver) {
+    public boolean findJobAndSendCVByContent (String[] jobsKeys, String previewLetter, String[] distributions, WebDriver driver, String CV) {
         int size = jobs.size();
         for (int i=0; i<jobs.size(); i++) {
             if (jobIsValid(jobsKeys, i)) {
                 scrollIntoView(jobs.get(i));
                 String originalWindow = driver.getWindowHandle();
                 click(jobsApplyCVBtn.get(i));
-                isXwindows(driver, originalWindow);
-                fillApplyOverlay(previewLetter, distributions, driver, i);
+                if (isXwindows(driver, originalWindow) && applyOverlayXBtn.isDisplayed()) {
+                    click(applyOverlayXBtn);
+                    sleep(500);
+                    click(jobsApplyCVBtn.get(i));
+                }
+                fillApplyOverlay(previewLetter, distributions, driver, CV);
             }
         }
         if (!lastPagingBtn.getAttribute("class").contains("Selected")) {
             scrollIntoView(lastPagingBtn);
             waitFor(lastPagingBtn);
             click(lastPagingBtn);
-            return findJobAndSendCVByContent(jobsKeys, previewLetter, distributions, driver);
+            return findJobAndSendCVByContent(jobsKeys, previewLetter, distributions, driver, CV);
         } else {
             return true;
         }
@@ -70,14 +85,20 @@ public class FeedPage extends Header{
         return false;
     }
 
-    public boolean fillApplyOverlay (String previewLetter, String[] distrubutions, WebDriver driver, int jobIndex) {
+    public boolean fillApplyOverlay (String previewLetter, String[] distrubutions, WebDriver driver, String CV) {
         try {
             waitFor(sendCVFrame);
         } catch (Exception e) {return false;}
         driver.switchTo().frame("frmSendCv");
         sleep(2000);
         fillText(fieldPreviewLetter,previewLetter);
-        int size = distributionCheckboxes.size();
+        click(exposeSelectCV);
+        for (WebElement option : CVs) {
+            if (option.getText().contains(CV)){
+                click(option);
+                break;
+            }
+        }
         if (distributionCheckboxes.size()!=0) {
             for (WebElement box : distributionCheckboxes) {
                 for (String distribution : distrubutions) {
@@ -86,21 +107,17 @@ public class FeedPage extends Header{
                     }
                 }
             }
-            click(send);
-            waitFor(closePrompt);
-            click(closePrompt);
-        } else {
-            try {
-                if (!questions.getText().equals("")) {
-                    takeScreeshot();
-                }
-            } catch (Exception e) {
-                System.err.println("There were no distribution checkboxes and no questions asked");
-            } finally {
-                driver.switchTo().defaultContent();
-                click(uploadOverlayXBtn);
-            }
         }
+
+        for (WebElement question : questions) {
+            question.findElement(By.cssSelector(" td")).click();
+        }
+        click(send);
+        WebElement[] els = new WebElement[] {closePrompt, sendError};
+        waitFor(els);
+        click(closePrompt);
+        driver.switchTo().defaultContent();
+
         sleep(700);
         driver.switchTo().defaultContent();
         takeScreeshot();

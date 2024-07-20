@@ -15,15 +15,20 @@ public class FeedPage extends Header{
     List<WebElement> jobTitles;
     @FindBy (css = "[id^=\"misra\"] .bottomItemsSend")
     List<WebElement> jobsSendCVBtns;
-    @FindBy (css = ".paging")
-    List<WebElement> movePageBtns ;
+    @FindBy (css = ".paginationPrev")
+    WebElement nextPageBtn ;
     @FindBy (css = "#jobFullDetails")
     WebElement jobDesc;
     @FindBy (css = "#q")
     WebElement fieldSearch;
     @FindBy (css = ".red")
     WebElement submit;
-
+    @FindBy (css = "#modal_content>input")
+    WebElement popUpButton;
+    @FindBy (css = "#modal_title")
+    WebElement popUpTitle;
+    @FindBy (css = "#modal_window #modal_closebtn")
+    WebElement serveyCloseBtn;
     public FeedPage(WebDriver driver) {
         super(driver);
     }
@@ -35,21 +40,26 @@ public class FeedPage extends Header{
                 if (jobTitles.get(i).getText().contains(jobKeys[j])) {
                     SendCVOverlay cvo = new SendCVOverlay(driver);
                     click(jobsSendCVBtns.get(i));
-                    sleep(1000);
-                    if (cvo.sendCV(CVName, previewLetter)) {
+                    sleep(500);
+                    if (cvo.sendCV(CVName, previewLetter, jobsSendCVBtns.get(i))) {
                         scrollIntoView(jobTitles.get(i));
                         takeScreeshot();
+                        continue;
                     }
+                    break;
                 }
             }
         }
-        waitFor(movePageBtns);
-        for (int k = movePageBtns.size()-1; k > -1; k--) {
-            if (movePageBtns.get(k).getText().contains("הבא")) {
-                click(movePageBtns.get(k));
-                sendCVByKeys(jobKeys, CVName, previewLetter, driver);
-            }
+        waitFor(nextPageBtn);
+        if (!nextPageBtn.getAttribute("class").contains("paginationPointerEventNone") ) {
+            click(nextPageBtn);
+            try {
+                waitFor(serveyCloseBtn);
+                click(serveyCloseBtn);
+            } catch (Exception e){}
+            sendCVByKeys(jobKeys, CVName, previewLetter, driver);
         }
+
     }
 
     public void search(String searchQuary) {

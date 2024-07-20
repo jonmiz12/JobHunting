@@ -22,17 +22,12 @@ public class JobnetBaseTest {
     String[] jobskeys = Utils.readProperty("jobskeys", site).split(",");
     String searchField = Utils.readProperty("searchField", site);
     String[] subSearchFields = Utils.readProperty("subSearchFields", site).split(",");
+    String CV = Utils.readProperty("CV", site);
 
     WebDriver driver;
 
     @BeforeMethod
     public void setup(ITestContext testContext){
-        try {
-            Runtime.getRuntime().exec("taskkill.exe /F /IM chromedriver.exe /T" + "cmd.exe");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(Utils.readProperty("url", site));

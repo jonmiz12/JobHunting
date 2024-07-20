@@ -53,6 +53,45 @@ public class BasePage {
 	public void waitFor(WebElement el) {
 		wait.until(ExpectedConditions.elementToBeClickable(el));
 	}
+
+	public void waitFor (WebElement[] els) {
+		try {
+			waitFor(els[0]);
+		} catch (Exception e) {}
+		for (WebElement el : els ) {
+			try {
+				if(el.isDisplayed()){
+					break;
+				}
+			} catch (Exception e){}
+		}
+	}
+
+	public boolean waitForBool (WebElement el) {
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(el));
+			return true;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean findInElement (WebElement father, String childString) {
+		WebElement child = null;
+		try {
+			child = father.findElement(By.cssSelector(childString));
+		} catch (Exception e) {
+			return false;
+		}
+		return isDisplayedBool(child);
+	}
+
+	public boolean isDisplayedBool(WebElement el) {
+		try {
+			el.isDisplayed();
+		} catch (Exception e) {return false;}
+		return true;
+	}
 	
 	public void waitFor(List<WebElement> el) {
 		wait.until(ExpectedConditions.visibilityOfAllElements(el));
@@ -61,6 +100,15 @@ public class BasePage {
 	public boolean scrollIntoView(WebElement el) {
 		try {
 			js.executeScript("arguments[0].scrollIntoView({block: \"center\"});", el);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean scrollToMidView (WebElement el) {
+		try {
+			js.executeScript("arguments[0].scrollIntoView({ behavior: 'auto', block: 'center' });", el);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -76,7 +124,7 @@ public class BasePage {
 		}
 	}
 
-	public void waitForELementToDisappear (WebElement el) {
+	public void waitForElementToDisappear(WebElement el) {
 		int counter = 0;
 		while (el!=null && counter<15){
 			sleep(200);
@@ -114,7 +162,8 @@ public class BasePage {
 		Assert.assertEquals(actual, expected);
 	}
 
-	public void isXwindows(WebDriver driver, String originalWindow) {
+	public boolean isXwindows(WebDriver driver, String originalWindow) {
+		boolean popup=false;
 		if (driver.getWindowHandles().size()>1) {
 			int size = driver.getWindowHandles().size();
 			Set<String> windowHandles = driver.getWindowHandles();
@@ -122,11 +171,13 @@ public class BasePage {
 				driver.switchTo().window(handle);
 				if (!handle.equals(originalWindow)) {
 					driver.close();
+					popup=true;
 				}
 			}
 			driver.switchTo().window(originalWindow);
 		}
 		sleep(2000);
+		return popup;
 	}
 	
 	public void assertEquals (int actual, int expected) {
@@ -162,5 +213,4 @@ public class BasePage {
 	public byte[] attachScreenshot(String name, byte[] screenshot) {
 		return screenshot;
 	}
-
 }

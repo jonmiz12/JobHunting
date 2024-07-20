@@ -12,6 +12,6 @@ public class Jobnet extends JobnetBaseTest {
         hp.assertEquals(hp.login(email, password, userName), true);
         hp.assertEquals(hp.search(searchField, subSearchFields, driver), true);
         FeedPage fp = new FeedPage(driver);
-        fp.assertEquals(fp.findJobAndSendCVByContent(jobskeys, previewLetter, distributions, driver), true);
+        fp.assertEquals(fp.findJobAndSendCVByContent(jobskeys, previewLetter, distributions, driver, CV), true);
     }
 }

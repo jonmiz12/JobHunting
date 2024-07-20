@@ -12,9 +12,10 @@ public class AllJobs extends AllJobsBaseTest{
         AJLoginPage lp = new AJLoginPage(driver);
         lp.login(email, password);
         AJHomePage hp = new AJHomePage(driver);
-        hp.clickOverlayXBtn();
-        h.isUserNameMatch(userName);
-        h.clickAgents();
+//        hp.clickOverlayXBtn();
+//        h.assertEquals(h.isUserNameMatch(userName), true);
+        driver.get(agentsUrl);
+//        h.clickAgents(agentsUrl);
         AJAgentsPage ap = new AJAgentsPage(driver);
         ap.clickFeed();
         AJFeedPage f = new AJFeedPage(driver);

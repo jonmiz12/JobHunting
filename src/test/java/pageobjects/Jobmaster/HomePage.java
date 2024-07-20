@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import javax.swing.*;
+
 public class HomePage extends Header {
 
     @FindBy (css = ".title")
@@ -20,7 +22,8 @@ public class HomePage extends Header {
     }
 
     public String getUserName () {
-        sleep(4000);
+        sleep(3000);
+        waitFor(userName);
         String actualName = userName.getText();
         return actualName;
     }

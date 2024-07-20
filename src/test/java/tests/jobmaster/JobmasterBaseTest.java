@@ -27,11 +27,6 @@ public class JobmasterBaseTest {
 
     @BeforeMethod
     public void setup(ITestContext testContext){
-        try {
-            Runtime.getRuntime().exec("taskkill.exe /F /IM chromedriver.exe /T" + "cmd.exe");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();

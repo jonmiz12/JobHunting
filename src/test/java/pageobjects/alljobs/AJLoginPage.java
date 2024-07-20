@@ -27,6 +27,7 @@ public class AJLoginPage extends BasePage {
         fillText(fieldEmail, email);
         fillText(fieldPassword, password);
         click(loginBtn);
+        sleep(6000);
         return true;
     }
 

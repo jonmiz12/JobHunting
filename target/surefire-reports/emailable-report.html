@@ -9,17 +9,41 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Suite1</th></tr>
-<tr><td><a href="#t0">test1</a></td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">592,369</td><td></td><td></td></tr>
+<tr><td><a href="#t0">test1</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num attn">2</td><td class="num">1,063,142</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite1</th></tr></tbody><tbody id="t0"><tr><th colspan="4">test1 &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">tests.drushim.Drushim</td><td><a href="#m0">tc01_runDrushim</a></td><td rowspan="1">1694165367086</td><td rowspan="1">8336</td></tr><tr><th colspan="4">test1 &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">tests.alljobs.AllJobs</td><td><a href="#m1">tc01_runAllJobs</a></td><td rowspan="1">1694165382526</td><td rowspan="1">30013</td></tr><tr class="passedodd"><td rowspan="1">tests.jobmaster.Jobmaster</td><td><a href="#m2">tc01_RunJobMaster</a></td><td rowspan="1">1694165162248</td><td rowspan="1">197672</td></tr><tr class="passedeven"><td rowspan="1">tests.jobnet.Jobnet</td><td><a href="#m3">tc01_RunJobnet</a></td><td rowspan="1">1694165008468</td><td rowspan="1">151286</td></tr><tr class="passedodd"><td rowspan="1">tests.sqlink.Sqlink</td><td><a href="#m4">tc01_runSqlink</a></td><td rowspan="1">1694164828215</td><td rowspan="1">177991</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite1</th></tr></tbody><tbody id="t0"><tr><th colspan="4">test1 &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">tests.drushim.Drushim</td><td><a href="#m0">tc01_runDrushim</a></td><td rowspan="1">1721393684543</td><td rowspan="1">10529</td></tr><tr class="failedodd"><td rowspan="1">tests.jobmaster.Jobmaster</td><td><a href="#m1">tc01_RunJobMaster</a></td><td rowspan="1">1721393458320</td><td rowspan="1">220472</td></tr><tr><th colspan="4">test1 &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">tests.alljobs.AllJobs</td><td><a href="#m2">tc01_runAllJobs</a></td><td rowspan="1">1721393702261</td><td rowspan="1">31708</td></tr><tr class="passedodd"><td rowspan="1">tests.jobnet.Jobnet</td><td><a href="#m3">tc01_RunJobnet</a></td><td rowspan="1">1721393079902</td><td rowspan="1">375212</td></tr><tr class="passedeven"><td rowspan="1">tests.sqlink.Sqlink</td><td><a href="#m4">tc01_runSqlink</a></td><td rowspan="1">1721392678276</td><td rowspan="1">294394</td></tr></tbody>
 </table>
-<h2>test1</h2><h3 id="m0">tests.drushim.Drushim#tc01_runDrushim</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: expected [true] but found [false]
-	at pageobjects.BasePage.assertEquals(BasePage.java:114)
-	at tests.drushim.Drushim.tc01_runDrushim(Drushim.java:12)
-	at java.util.ArrayList.forEach(ArrayList.java:1257)
-... Removed 36 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">tests.alljobs.AllJobs#tc01_runAllJobs</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">tests.jobmaster.Jobmaster#tc01_RunJobMaster</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>test1</h2><h3 id="m0">tests.drushim.Drushim#tc01_runDrushim</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: expected [יהונתן] but found [התחברות]
+	at pageobjects.BasePage.assertEquals(BasePage.java:158)
+	at tests.drushim.Drushim.tc01_runDrushim(Drushim.java:13)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+... Removed 37 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">tests.jobmaster.Jobmaster#tc01_RunJobMaster</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span tabindex=&quot;0&quot; class=&quot;bottomItems twoBTNS bottomItemsSend Begin_Cv_Send&quot; data-selector=&quot;Begin_Cv_Send_9098961&quot; forlogin=&quot;{&apos;isLogin&apos;:&apos;false&apos;,&apos;selector&apos;:&apos;data-selector&apos;,&apos;events&apos;:&apos;scrollIntoView(),click()&apos;}&quot; onclick=&quot;sendEventApply(&apos;9098961&apos;);applyJob(9098961,null);&quot; style=&quot;&quot;&gt;...&lt;/span&gt; is not clickable at point (1028, 515). Other element would receive the click: &lt;div id=&quot;modal_shadow&quot; style=&quot;&quot;&gt;&lt;/div&gt;
+  (Session info: chrome=126.0.6478.127)
+Build info: version: &apos;4.18.1&apos;, revision: &apos;b1d3319b48&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [1be369d2cf4c8b4692781aff58e5d400, clickElement {id=f.AD5F8182FB6CAB4E39C2734117B330F9.d.E27F9C68C837293059EA39C7A80537C0.e.1520}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6478.127, chrome: {chromedriverVersion: 126.0.6478.182 (5b5d8292ddf..., userDataDir: C:\Users\jonmi\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:55107}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:55107/devtoo..., se:cdpVersion: 126.0.6478.127, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (1be369d2cf4c8b4692781aff58e5d400)] -&gt; css selector: [id^=&quot;misra&quot;] .bottomItemsSend]
+Session ID: 1be369d2cf4c8b4692781aff58e5d400
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:519)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at pageobjects.BasePage.click(BasePage.java:154)
+	at pageobjects.Jobmaster.FeedPage.sendCVByKeys(FeedPage.java:42)
+	at pageobjects.Jobmaster.FeedPage.sendCVByKeys(FeedPage.java:60)
+	at pageobjects.Jobmaster.FeedPage.searchByArrayAndCallSendCV(FeedPage.java:75)
+	at tests.jobmaster.Jobmaster.tc01_RunJobMaster(Jobmaster.java:18)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+... Removed 35 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">tests.alljobs.AllJobs#tc01_runAllJobs</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 <h3 id="m3">tests.jobnet.Jobnet#tc01_RunJobnet</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 <h3 id="m4">tests.sqlink.Sqlink#tc01_runSqlink</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>

@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pageobjects.drushim.Header;
 
+import java.util.List;
+
 public class AJAgentsPage extends AJHeader {
     @FindBy (css = ".feed-link")
     WebElement feedBtn;

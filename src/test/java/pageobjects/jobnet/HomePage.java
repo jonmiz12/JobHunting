@@ -34,10 +34,13 @@ public class HomePage extends Header {
 
     public boolean login (String email, String password, String userName) {
         waitFor(openJobFieldsBtn);
+        sleep(200);
         click(openLoginOverlayBtn);
+        sleep(200);
         waitFor(fieldEmail);
         fillText(fieldEmail, email);
         fillText(fieldPassword, password);
+        sleep(3000);
         click(loginBtn);
         waitFor(openLoginOverlayBtn);
         String name = privateZoneBtn.getText();
